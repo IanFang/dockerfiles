@@ -8,11 +8,11 @@ Bash function to run ipython shell or jupyter notebook.
 
 ```bash
 dipy() {
-    image=ianfang:pydata
+    image=ianfang/pydata
     docker run -v $PWD:/tmp/working -w=/tmp/working --rm -it $image ipython
 }
 djup() {
-    image=ianfang:pydata
+    image=ianfang/pydata
     docker run -v $PWD:/tmp/working -w=/tmp/working -p 8888:8888 --rm -it $image jupyter notebook --no-browser --ip="*" --notebook-dir=/tmp/working
 }
 ```
