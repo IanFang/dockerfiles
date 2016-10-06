@@ -1,10 +1,17 @@
 ## Synopsis
 
-Support files to build python data science docker image.
+Support files to build python data science (including cheminformatics) docker image.
+Packages:
+
+> Python: Python 2.7, iPython, Jupyter notebook, Nose, Pytest
+> Scientific: Numpy, Scipy, Matplotlib, Seaborn, Scikit image
+> Machine learning: Scikit Learn, Tensorflow, Keras, Theano, Xgboost
+> Cheminformatics: openbabel, rdkit
+> Other: PySpectral
 
 ## Code Example
 
-Bash function to run ipython shell or jupyter notebook.
+Bash function to run ipython shell or jupyter notebook with the current directory mapped as the working directory.
 
 ```bash
 dipy() {
@@ -23,7 +30,7 @@ Create an isolated and portable python based data science development environmen
 
 ## Installation
 
-docker build -t <tag> .
+docker build -t \[tag\] .
 
 ## API Reference
 
@@ -35,11 +42,9 @@ None
 
 ## Contributors
 
-Ian Fang, xingang.fang@gmail.com
+Ian Fang
 
 ## License
 
 Public
 
-## TODO
-    Combine ENV into RUN command
