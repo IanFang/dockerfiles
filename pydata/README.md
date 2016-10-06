@@ -3,11 +3,11 @@
 Support files to build python data science (including cheminformatics) docker image.
 Packages:
 
-> Python: Python 2.7, iPython, Jupyter notebook, Nose, Pytest
-> Scientific: Numpy, Scipy, Matplotlib, Seaborn, Scikit image
-> Machine learning: Scikit Learn, Tensorflow, Keras, Theano, Xgboost
-> Cheminformatics: openbabel, rdkit
-> Other: PySpectral
+- Python: Python 2.7, iPython, Jupyter notebook, Nose, Pytest;
+- Scientific: Numpy, Scipy, Matplotlib, Seaborn, Scikit image;
+- Machine learning: Scikit Learn, Tensorflow, Keras, Theano, Xgboost;
+- Cheminformatics: openbabel, rdkit;
+- Other: PySpectral
 
 ## Code Example
 
