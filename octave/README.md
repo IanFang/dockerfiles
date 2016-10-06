@@ -14,7 +14,7 @@ Build an isolated environment for octave shell based usage.
 
 ## Installation
 
-docker build -t <tag> .
+docker build -t tag .
 
 ## API Reference
 
@@ -26,7 +26,7 @@ None
 
 ## Contributors
 
-Ian Fang, xingang.fang@gmail.com
+Ian Fang
 
 ## License
 
