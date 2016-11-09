@@ -1,33 +1,54 @@
 FROM debian:jessie
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    wget \
     git \
     g++ \
     make \
     sqlite3 \
     python-dev \
-    python-scipy \
-    python-matplotlib \
-    openbabel \
     pandoc \
-    python-pip \
+    cython \
+    ca-certificates
+
+RUN wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py
+
+RUN pip install -q \
+    numpy \
+    scipy \
+    sklearn \
+    py \
+    pytest \
+    luigi \
+    ipython \
+    jupyter \
+    nbconvert \
+    seaborn \
+    keras \
+    spectral \
+    theano \
+    tensorflow \
+    xgboost \
+&& rm -rf /root/.cache/*
+
+RUN apt-get install -y --no-install-recommends \
+    openbabel \
     python-openbabel \
     python-rdkit \
     rdkit-data \
     python-pydot \
     python-pygraphviz \
-    python-sklearn \
     python-skimage \
-    python-pil \
     python-pytest \
     python-tk \
-    cython \
 && rm -rf /var/lib/apt/lists/*
 
-RUN pip install -q ipython jupyter nbconvert seaborn keras spectral theano && \
-    pip install -q --pre xgboost && \
-    pip install -q --upgrade \
-        https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.11.0rc0-cp27-none-linux_x86_64.whl && \
-rm -rf /root/.cache/*
+RUN mkdir -p $(jupyter --data-dir)/nbextensions && \
+    cd $(jupyter --data-dir)/nbextensions && \
+    git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding && \
+    jupyter nbextension enable vim_binding/vim_binding
+
 
 EXPOSE 8888
+
+CMD '/bin/bash'
