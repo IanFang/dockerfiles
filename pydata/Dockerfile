@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python-dev \
     pandoc \
     cython \
+    libssl-dev \
     ca-certificates
 
 RUN wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py
@@ -29,6 +30,17 @@ RUN pip install -q \
     theano \
     tensorflow \
     xgboost \
+    bokeh \
+    mock \
+    nltk \
+    pybrain \
+    tables \
+    statsmodels \
+    networkx \
+    scrapy \
+    urllib3 \
+    requests \
+    beautifulsoup4 \
 && rm -rf /root/.cache/*
 
 RUN apt-get install -y --no-install-recommends \
