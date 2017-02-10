@@ -48,6 +48,7 @@ RUN mkdir -p $(jupyter --data-dir)/nbextensions && \
     git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding && \
     jupyter nbextension enable vim_binding/vim_binding
 
+ADD jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
 
 EXPOSE 8888
 
