@@ -10,9 +10,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     pandoc \
     cython \
     libssl-dev \
-    ca-certificates
+    ca-certificates \
+&& rm -rf /var/lib/apt/lists/*
 
-RUN wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py
+RUN wget https://bootstrap.pypa.io/get-pip.py && \
+    python get-pip.py && \
+    rm get-pip.py
 
 RUN pip install -q \
     numpy \
@@ -41,6 +44,11 @@ RUN pip install -q \
     urllib3 \
     requests \
     beautifulsoup4 \
+    pytest \
+    configargparse \
+    pydot \
+    scikit-image \
+    pygraphviz \
 && rm -rf /root/.cache/*
 
 RUN apt-get install -y --no-install-recommends \
@@ -48,10 +56,6 @@ RUN apt-get install -y --no-install-recommends \
     python-openbabel \
     python-rdkit \
     rdkit-data \
-    python-pydot \
-    python-pygraphviz \
-    python-skimage \
-    python-pytest \
     python-tk \
 && rm -rf /var/lib/apt/lists/*
 
