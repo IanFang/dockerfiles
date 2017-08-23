@@ -48,15 +48,20 @@ RUN pip install -q \
     configargparse \
     pydot \
     scikit-image \
-    pygraphviz \
+    configargparse \
+    gensim \
+    statsmodels \
+    pattern \
+    pyyaml \
 && rm -rf /root/.cache/*
 
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     openbabel \
     python-openbabel \
     python-rdkit \
     rdkit-data \
     python-tk \
+    python-pygraphviz \
 && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p $(jupyter --data-dir)/nbextensions && \
