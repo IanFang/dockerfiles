@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     g++ \
     make \
     sqlite3 \
-    python-dev \
+    python3-dev \
     pandoc \
     cython \
     libssl-dev \
@@ -14,10 +14,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 && rm -rf /var/lib/apt/lists/*
 
 RUN wget https://bootstrap.pypa.io/get-pip.py && \
-    python get-pip.py && \
+    python3 get-pip.py && \
     rm get-pip.py
 
-RUN pip install -q \
+RUN pip3 install \
     numpy \
     scipy \
     sklearn \
@@ -51,17 +51,17 @@ RUN pip install -q \
     configargparse \
     gensim \
     statsmodels \
-    pattern \
     pyyaml \
 && rm -rf /root/.cache/*
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    openbabel \
-    python-openbabel \
-    python-rdkit \
-    rdkit-data \
-    python-tk \
-    python-pygraphviz \
+    # following packages are installed to python 2 only, use conda to manage?
+    # openbabel \
+    # python-openbabel \
+    # python-rdkit \
+    # rdkit-data \
+    python3-tk \
+    python3-pygraphviz \
 && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p $(jupyter --data-dir)/nbextensions && \
@@ -74,3 +74,6 @@ ADD jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
 EXPOSE 8888
 
 CMD '/bin/bash'
+
+# to run ipython: docker run -v $PWD:/tmp/working -w /tmp/working -it --rm p3data ipython
+# to run jupyter: docker run -v $PWD:/tmp/working -w /tmp/working -p 8888:8888 -d p3data sh -c "jupyter-notebook --no-browser --ip=\"*\" --notebook-dir=/tmp/working --allow-root"
