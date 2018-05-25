@@ -8,8 +8,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sqlite3 \
     python3-dev \
     pandoc \
-    cython \
+    cython3 \
     libssl-dev \
+    swig \
     ca-certificates \
 && rm -rf /var/lib/apt/lists/*
 
@@ -52,6 +53,12 @@ RUN pip3 install \
     gensim \
     statsmodels \
     pyyaml \
+    tpot \
+    mlxtend \
+&& rm -rf /root/.cache/*
+
+RUN pip3 install \
+    auto-sklearn \
 && rm -rf /root/.cache/*
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
