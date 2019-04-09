@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM ubuntu:latest
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
@@ -55,11 +55,16 @@ RUN pip3 install \
     pyyaml \
     tpot \
     mlxtend \
+    spacy \
+    peakutils \
+    featuretools \
 && rm -rf /root/.cache/*
 
 RUN pip3 install \
     auto-sklearn \
 && rm -rf /root/.cache/*
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     # following packages are installed to python 2 only, use conda to manage?
@@ -80,7 +85,9 @@ ADD jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
 
 EXPOSE 8888
 
+WORKDIR /tmp/working
+
 CMD '/bin/bash'
 
-# to run ipython: docker run -v $PWD:/tmp/working -w /tmp/working -it --rm p3data ipython
-# to run jupyter: docker run -v $PWD:/tmp/working -w /tmp/working -p 8888:8888 -d p3data sh -c "jupyter-notebook --no-browser --ip=\"*\" --notebook-dir=/tmp/working --allow-root"
+# to run ipython: docker run -v $PWD:/tmp/working -it --rm p3data ipython
+# to run jupyter: docker run -v $PWD:/tmp/working -p 8888:8888 -d p3data bash -c "jupyter-notebook --no-browser --ip=\"0.0.0.0\" --notebook-dir=/tmp/working --allow-root"
