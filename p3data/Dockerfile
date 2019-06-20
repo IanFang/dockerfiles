@@ -58,6 +58,8 @@ RUN pip3 install \
     spacy \
     peakutils \
     featuretools \
+    mlens \
+
 && rm -rf /root/.cache/*
 
 RUN pip3 install \
