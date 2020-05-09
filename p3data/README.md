@@ -1,13 +1,11 @@
 ## Synopsis
 
-Support files to build python data science (including cheminformatics) docker image.
+Support files to build python data science
 Packages:
 
-- Python: Python 2.7, iPython, Jupyter notebook, Nose, Pytest;
+- Python: Python 3, iPython, Jupyter notebook, Nose, Pytest;
 - Scientific: Numpy, Scipy, Matplotlib, Seaborn, Scikit image;
 - Machine learning: Scikit Learn, Tensorflow, Keras, Theano, Xgboost;
-- Cheminformatics: openbabel, rdkit;
-- Other: PySpectral
 
 ## Code Example
 
@@ -15,11 +13,11 @@ Bash function to run ipython shell or jupyter notebook with the current director
 
 ```bash
 dipy() {
-    image=ianfang/pydata
+    image=ianfang/p3data
     docker run -v $PWD:/tmp/working -w=/tmp/working --rm -it $image ipython
 }
 djup() {
-    image=ianfang/pydata
+    image=ianfang/p3data
     docker run -v $PWD:/tmp/working -w=/tmp/working -p 8888:8888 --rm -it $image jupyter notebook --no-browser --ip="*" --notebook-dir=/tmp/working
 }
 ```

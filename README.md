@@ -1,8 +1,7 @@
 ### Dockerfiles
 List of Dockerfiles
 
-- pydata: python based data science environment
-- octave: simple octave environment
+- p3data: python 3 based data science environment
 
 ### Contributors
 Ian Fang

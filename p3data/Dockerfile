@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssl-dev \
     swig \
     ca-certificates \
+    python3-tk \
+    python3-pygraphviz \
 && rm -rf /var/lib/apt/lists/*
 
 RUN wget https://bootstrap.pypa.io/get-pip.py && \
@@ -56,27 +58,13 @@ RUN pip3 install \
     tpot \
     mlxtend \
     spacy \
-    peakutils \
     featuretools \
     mlens \
-
-&& rm -rf /root/.cache/*
-
-RUN pip3 install \
+    torch \
     auto-sklearn \
 && rm -rf /root/.cache/*
 
 ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    # following packages are installed to python 2 only, use conda to manage?
-    # openbabel \
-    # python-openbabel \
-    # python-rdkit \
-    # rdkit-data \
-    python3-tk \
-    python3-pygraphviz \
-&& rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p $(jupyter --data-dir)/nbextensions && \
     cd $(jupyter --data-dir)/nbextensions && \
