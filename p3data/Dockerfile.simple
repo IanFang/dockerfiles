@@ -1,5 +1,7 @@
 FROM ubuntu:latest
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     git \
@@ -60,8 +62,6 @@ RUN pip3 install \
     featuretools \
     mlens \
 && rm -rf /root/.cache/*
-
-ENV DEBIAN_FRONTEND=noninteractive
 
 RUN mkdir -p $(jupyter --data-dir)/nbextensions && \
     cd $(jupyter --data-dir)/nbextensions && \
