@@ -70,6 +70,10 @@ RUN mkdir -p $(jupyter --data-dir)/nbextensions && \
 
 ADD jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
 
+RUN pip3 install \
+    torch \
+&& rm -rf /root/.cache/*
+
 EXPOSE 8888
 
 WORKDIR /tmp/working
